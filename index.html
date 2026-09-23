@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Us a Review</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f6f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+    .card { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; width: 100%; text-align: center; }
+    h2 { margin-bottom: 8px; color: #333; }
+    p { color: #666; font-size: 14px; margin-bottom: 24px; }
+    .form-group { text-align: left; margin-bottom: 18px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; color: #444; font-size: 14px; }
+    input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: #007bff; }
+    button { width: 100%; background-color: #007bff; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    button:hover { background-color: #0056b3; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>We Value Your Feedback!</h2>
+    <p>Please take a few seconds to let us know about your order.</p>
+
+    <!-- Formspree Endpoint to send reviews directly to your email -->
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+      
+      <div class="form-group">
+        <label for="name">Your Name (Optional):</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Jane Doe">
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating" required>
+          <option value="5 ⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ - Excellent</option>
+          <option value="4 ⭐⭐⭐⭐">⭐⭐⭐⭐ - Good</option>
+          <option value="3 ⭐⭐⭐">⭐⭐⭐ - Average</option>
+          <option value="2 ⭐⭐">⭐⭐ - Poor</option>
+          <option value="1 ⭐">⭐ - Very Bad</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="feedback">Your Review:</label>
+        <textarea id="feedback" name="feedback" rows="4" placeholder="How was your experience?" required></textarea>
+      </div>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+</body>
+</html>
