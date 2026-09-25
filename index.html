@@ -4,41 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leave Us a Review</title>
+  
+  <!-- Modern & Clean Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     body {
-      background-color: #f4f6f8;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px 16px;
     }
     .card {
       background: #ffffff;
-      padding: 32px 24px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      max-width: 440px;
+      padding: 36px 28px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+      max-width: 450px;
       width: 100%;
+      border: 1px solid #f1f5f9;
     }
     .header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #eff6ff;
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
     .header h2 {
-      color: #111827;
-      font-size: 22px;
+      color: #0f172a;
+      font-size: 24px;
+      font-weight: 700;
       margin-bottom: 6px;
+      letter-spacing: -0.5px;
     }
     .header p {
-      color: #6b7280;
+      color: #64748b;
       font-size: 14px;
+      line-height: 1.5;
     }
     .form-group {
       margin-bottom: 20px;
@@ -47,40 +69,59 @@
       display: block;
       font-weight: 600;
       margin-bottom: 8px;
-      color: #374151;
+      color: #334155;
       font-size: 14px;
     }
-    label span {
+    label span.req {
       color: #ef4444;
+      margin-left: 2px;
+    }
+    label span.opt {
+      color: #94a3b8;
+      font-weight: 400;
+      font-size: 12px;
+      margin-left: 4px;
     }
     input, select, textarea {
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
+      padding: 13px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
       font-size: 15px;
-      color: #1f2937;
+      color: #0f172a;
+      background-color: #f8fafc;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: all 0.2s ease;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #94a3b8;
     }
     input:focus, select:focus, textarea:focus {
       border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
     }
     button {
       width: 100%;
       background-color: #2563eb;
       color: white;
       border: none;
-      padding: 14px;
-      border-radius: 8px;
+      padding: 16px;
+      border-radius: 12px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: background-color 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: all 0.2s ease;
+      margin-top: 8px;
     }
     button:hover {
       background-color: #1d4ed8;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+      transform: translateY(-1px);
+    }
+    button:active {
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -88,40 +129,41 @@
 
   <div class="card">
     <div class="header">
-      <h2>We Value Your Feedback! 👟</h2>
-      <p>Please complete all required fields below to submit your review.</p>
+      <span class="badge">Customer Feedback</span>
+      <h2>We Value Your Experience 👟</h2>
+      <p>Tell us how your purchase went. Your review helps us continue delivering quality products!</p>
     </div>
 
-    <!-- Connected Formspree Form -->
+    <!-- Formspree Action URL -->
     <form action="https://formspree.io/f/xqpaljkl" method="POST">
       
-      <!-- Required Name -->
+      <!-- REQUIRED: Full Name -->
       <div class="form-group">
-        <label for="name">Your Name <span>*</span></label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <label for="name">Your Name <span class="req">*</span></label>
+        <input type="text" id="name" name="name" placeholder="e.g. John Doe" required>
       </div>
 
-      <!-- Required Phone Number -->
+      <!-- REQUIRED: Phone Number -->
       <div class="form-group">
-        <label for="phone">Phone Number <span>*</span></label>
+        <label for="phone">Phone Number <span class="req">*</span></label>
         <input type="tel" id="phone" name="phone" placeholder="e.g. +234 801 234 5678" required>
       </div>
 
-      <!-- Required Email Address (Prevents Formspree validation error) -->
+      <!-- OPTIONAL: Email Address -->
       <div class="form-group">
-        <label for="email">Email Address <span>*</span></label>
-        <input type="email" id="email" name="email" placeholder="e.g. customer@example.com" required>
+        <label for="email">Email Address <span class="opt">(Optional)</span></label>
+        <input type="email" id="email" name="email" placeholder="e.g. name@example.com">
       </div>
 
-      <!-- Required Shoe Details -->
+      <!-- REQUIRED: Purchased Shoe -->
       <div class="form-group">
-        <label for="shoe_item">Which shoe pair did you purchase? <span>*</span></label>
-        <input type="text" id="shoe_item" name="shoe_item" placeholder="e.g. Black Leather Loafers" required>
+        <label for="shoe_item">Which shoe pair did you buy? <span class="req">*</span></label>
+        <input type="text" id="shoe_item" name="shoe_item" placeholder="e.g. White Leather Sneakers" required>
       </div>
 
-      <!-- Required Rating Dropdown -->
+      <!-- REQUIRED: Star Rating -->
       <div class="form-group">
-        <label for="rating">Rating <span>*</span></label>
+        <label for="rating">Rating <span class="req">*</span></label>
         <select id="rating" name="rating" required>
           <option value="" disabled selected>Select a rating...</option>
           <option value="5 ⭐⭐⭐⭐⭐">5 ⭐⭐⭐⭐⭐ - Excellent</option>
@@ -132,10 +174,10 @@
         </select>
       </div>
 
-      <!-- Required Feedback Text -->
+      <!-- REQUIRED: Review Details -->
       <div class="form-group">
-        <label for="feedback">Your Review <span>*</span></label>
-        <textarea id="feedback" name="feedback" rows="4" placeholder="Tell us about your experience..." required></textarea>
+        <label for="feedback">Your Review <span class="req">*</span></label>
+        <textarea id="feedback" name="feedback" rows="4" placeholder="Tell us what you loved about your new shoes..." required></textarea>
       </div>
 
       <button type="submit">Submit Feedback</button>
