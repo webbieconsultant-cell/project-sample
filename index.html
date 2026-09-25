@@ -3,54 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leave Us a Review</title>
+  <title>Leave Us a Review | Footwear Feedback</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Inter & Plus Jakarta Sans Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              900: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: #f4f6f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-    .card { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; width: 100%; text-align: center; }
-    h2 { margin-bottom: 8px; color: #333; }
-    p { color: #666; font-size: 14px; margin-bottom: 24px; }
-    .form-group { text-align: left; margin-bottom: 18px; }
-    label { display: block; font-weight: 600; margin-bottom: 6px; color: #444; font-size: 14px; }
-    input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px; outline: none; }
-    input:focus, select:focus, textarea:focus { border-color: #007bff; }
-    button { width: 100%; background-color: #007bff; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-    button:hover { background-color: #0056b3; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      min-height: 100vh;
+    }
+    
+    .star-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .star-btn:hover, .star-btn.active {
+      transform: scale(1.25) rotate(-4deg);
+      color: #fbbf24;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Custom Pulse Effect for Primary Button */
+    @keyframes subtlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .btn-pulse:hover {
+      animation: subtlePulse 1.5s infinite ease-in-out;
+    }
   </style>
 </head>
-<body>
 
-  <div class="card">
-    <h2>We Value Your Feedback!</h2>
-    <p>Please take a few seconds to let us know about your order.</p>
+<body class="flex items-center justify-center p-4 sm:p-6 md:p-8">
 
-    <!-- Formspree Endpoint to send reviews directly to your email -->
-    <form action="https://formspree.io/f/xqpaljkl" method="POST">
+  <div class="w-full max-w-lg">
+    
+    <!-- Header Logo / Brand Identity -->
+    <div class="text-center mb-6">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 text-white shadow-xl mb-3 shadow-blue-500/30">
+        <i class="fa-solid font-bold text-2xl fa-shoe-prints"></i>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Your Feedback Matters!</h1>
+      <p class="text-slate-400 text-sm sm:text-base mt-1">Tell us how your new kicks feel on your feet 👟</p>
+    </div>
+
+    <!-- MAIN FORM CONTAINER -->
+    <div id="reviewCard" class="glass-card rounded-3xl p-6 sm:p-8 transition-all duration-300">
       
-      <div class="form-group">
-        <label for="name">Your Name (Optional):</label>
-        <input type="text" id="name" name="name" placeholder="e.g. Jane Doe">
+      <!-- FORM START -->
+      <form id="reviewForm" action="https://formspree.io/f/xqpaljkl" method="POST" class="space-y-6">
+        
+        <!-- Star Rating Section -->
+        <div>
+          <label class="block text-center text-sm font-bold text-slate-800 mb-2 uppercase tracking-wider">
+            Overall Rating <span class="text-red-500">*</span>
+          </label>
+          
+          <div class="flex justify-center items-center space-x-2 sm:space-x-3 my-2" id="starContainer">
+            <button type="button" data-value="1" class="star-btn text-3xl sm:text-4xl text-slate-300 focus:outline-none">★</button>
+            <button type="button" data-value="2" class="star-btn text-3xl sm:text-4xl text-slate-300 focus:outline-none">★</button>
+            <button type="button" data-value="3" class="star-btn text-3xl sm:text-4xl text-slate-300 focus:outline-none">★</button>
+            <button type="button" data-value="4" class="star-btn text-3xl sm:text-4xl text-slate-300 focus:outline-none">★</button>
+            <button type="button" data-value="5" class="star-btn text-3xl sm:text-4xl text-slate-300 focus:outline-none">★</button>
+          </div>
+
+          <!-- Dynamic Rating Label -->
+          <div id="ratingLabel" class="text-center text-sm font-semibold text-blue-600 min-h-[20px]">
+            Tap a star to rate
+          </div>
+          
+          <!-- Hidden Input sent to Formspree -->
+          <input type="hidden" name="rating" id="ratingInput" required value="">
+        </div>
+
+        <!-- Customer Name Field -->
+        <div>
+          <label for="name" class="block text-sm font-semibold text-slate-700 mb-1">
+            Your Name <span class="text-slate-400 text-xs font-normal">(Optional)</span>
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <input type="text" id="name" name="name" placeholder="e.g. Sarah K." 
+              class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none">
+          </div>
+        </div>
+
+        <!-- Review Message -->
+        <div>
+          <label for="feedback" class="block text-sm font-semibold text-slate-700 mb-1">
+            Your Review <span class="text-red-500">*</span>
+          </label>
+          <textarea id="feedback" name="feedback" rows="4" required
+            placeholder="How was the fit, comfort, quality, and delivery speed? Let us know!"
+            class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none resize-none"></textarea>
+        </div>
+
+        <!-- Optional Photo Upload Section -->
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">
+            Add a Photo of your Shoes <span class="text-slate-400 text-xs font-normal">(Optional)</span>
+          </label>
+          
+          <div id="uploadBox" class="border-2 border-dashed border-slate-200 rounded-2xl p-4 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all">
+            <input type="file" id="photoInput" name="upload" accept="image/*" class="hidden">
+            <div id="uploadPlaceholder" class="space-y-1">
+              <i class="fa-solid fa-camera text-slate-400 text-2xl"></i>
+              <p class="text-xs font-medium text-slate-600">Tap to upload or take a photo</p>
+              <p class="text-[10px] text-slate-400">PNG, JPG up to 5MB</p>
+            </div>
+            
+            <!-- Image Preview Box -->
+            <div id="imagePreviewContainer" class="hidden relative inline-block mt-2">
+              <img id="imagePreview" src="#" alt="Preview" class="h-28 w-28 object-cover rounded-xl border border-slate-200 shadow-sm">
+              <button type="button" id="removePhotoBtn" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-md hover:bg-red-600">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn"
+          class="btn-pulse w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-blue-500/25 transition-all text-base flex items-center justify-center space-x-2">
+          <span>Submit My Review</span>
+          <i class="fa-solid fa-paper-plane text-sm"></i>
+        </button>
+        
+        <p class="text-center text-[11px] text-slate-400">
+          🔒 Your feedback helps us serve you better!
+        </p>
+
+      </form>
+      <!-- FORM END -->
+
+      <!-- SUCCESS / THANK YOU STATE (Hidden by default) -->
+      <div id="thankYouCard" class="hidden text-center py-8 space-y-4">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-2">
+          <i class="fa-solid fa-check text-4xl"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800">Thank You So Much!</h2>
+        <p class="text-slate-600 text-sm max-w-xs mx-auto leading-relaxed">
+          Your feedback has been submitted successfully. We appreciate your support for our brand! 👟❤️
+        </p>
+        <div class="pt-4">
+          <button onclick="window.location.reload()" class="text-xs text-blue-600 font-semibold hover:underline">
+            ← Leave another review
+          </button>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating" required>
-          <option value="5 ⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ - Excellent</option>
-          <option value="4 ⭐⭐⭐⭐">⭐⭐⭐⭐ - Good</option>
-          <option value="3 ⭐⭐⭐">⭐⭐⭐ - Average</option>
-          <option value="2 ⭐⭐">⭐⭐ - Poor</option>
-          <option value="1 ⭐">⭐ - Very Bad</option>
-        </select>
-      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="feedback">Your Review:</label>
-        <textarea id="feedback" name="feedback" rows="4" placeholder="How was your experience?" required></textarea>
-      </div>
+    <!-- Footer -->
+    <div class="text-center text-slate-500 text-xs mt-6">
+      &copy; Brand Customer Experience System
+    </div>
 
-      <button type="submit">Submit Feedback</button>
-    </form>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Elements Selection
+      const starButtons = document.querySelectorAll('.star-btn');
+      const ratingInput = document.getElementById('ratingInput');
+      const ratingLabel = document.getElementById('ratingLabel');
+      const photoInput = document.getElementById('photoInput');
+      const uploadBox = document.getElementById('uploadBox');
+      const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+      const imagePreview = document.getElementById('imagePreview');
+      const removePhotoBtn = document.getElementById('removePhotoBtn');
+      const form = document.getElementById('reviewForm');
+      const reviewCard = document.getElementById('reviewCard');
+      const thankYouCard = document.getElementById('thankYouCard');
+
+      // Rating Labels Configuration
+      const ratingTexts = {
+        1: "1 Star - Poor Fit/Quality 😞",
+        2: "2 Stars - Could Be Better 🤔",
+        3: "3 Stars - Average / Okay 👟",
+        4: "4 Stars - Great Shoes! 😊",
+        5: "5 Stars - Absolutely Loved Them! 🔥👟"
+      };
+
+      let selectedRating = 0;
+
+      // --- STAR RATING INTERACTION ---
+      starButtons.forEach((star, index) => {
+        // Hover effect
+        star.addEventListener('mouseenter', () => {
+          highlightStars(index + 1);
+          ratingLabel.textContent = ratingTexts[index + 1];
+        });
+
+        // Mouse leave effect
+        star.parentElement.addEventListener('mouseleave', () => {
+          highlightStars(selectedRating);
+          ratingLabel.textContent = selectedRating ? ratingTexts[selectedRating] : "Tap a star to rate";
+        });
+
+        // Click selection
+        star.addEventListener('click', () => {
+          selectedRating = index + 1;
+          ratingInput.value = `${selectedRating} Star(s)`;
+          highlightStars(selectedRating);
+          ratingLabel.textContent = ratingTexts[selectedRating];
+        });
+      });
+
+      function highlightStars(count) {
+        starButtons.forEach((star, idx) => {
+          if (idx < count) {
+            star.classList.add('text-amber-400', 'active');
+            star.classList.remove('text-slate-300');
+          } else {
+            star.classList.remove('text-amber-400', 'active');
+            star.classList.add('text-slate-300');
+          }
+        });
+      }
+
+      // --- PHOTO UPLOAD & PREVIEW ---
+      uploadBox.addEventListener('click', (e) => {
+        if (e.target !== removePhotoBtn && !removePhotoBtn.contains(e.target)) {
+          photoInput.click();
+        }
+      });
+
+      photoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            imagePreview.src = event.target.result;
+            uploadPlaceholder.classList.add('hidden');
+            imagePreviewContainer.classList.remove('hidden');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      removePhotoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        photoInput.value = '';
+        imagePreview.src = '#';
+        imagePreviewContainer.classList.add('hidden');
+        uploadPlaceholder.classList.remove('hidden');
+      });
+
+      // --- FORM SUBMISSION HANDLING ---
+      form.addEventListener('submit', async (e) => {
+        // Check if rating is selected
+        if (!selectedRating) {
+          e.preventDefault();
+          alert('Please tap a star to give a rating before submitting!');
+          return;
+        }
+
+        // Show loading state on button
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <i class="fa-solid fa-circle-notch fa-spin text-lg"></i>
+          <span>Submitting...</span>
+        `;
+      });
+
+    });
+  </script>
 </body>
 </html>
