@@ -93,6 +93,11 @@
       outline: none;
       transition: all 0.2s ease;
     }
+    input[type="file"] {
+      padding: 10px;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
     input::placeholder, textarea::placeholder {
       color: #94a3b8;
     }
@@ -134,8 +139,8 @@
       <p>Tell us how your purchase went. Your review helps us continue delivering quality products!</p>
     </div>
 
-    <!-- Formspree Action URL -->
-    <form action="https://formspree.io/f/xqpaljkl" method="POST">
+    <!-- Added enctype="multipart/form-data" for file upload support -->
+    <form action="https://formspree.io/f/xqpaljkl" method="POST" enctype="multipart/form-data">
       
       <!-- REQUIRED: Full Name -->
       <div class="form-group">
@@ -178,6 +183,12 @@
       <div class="form-group">
         <label for="feedback">Your Review <span class="req">*</span></label>
         <textarea id="feedback" name="feedback" rows="4" placeholder="Tell us what you loved about your new shoes..." required></textarea>
+      </div>
+
+      <!-- OPTIONAL: Product Photo Upload -->
+      <div class="form-group">
+        <label for="photo">Upload Product Photo <span class="opt">(Optional)</span></label>
+        <input type="file" id="photo" name="product_photo" accept="image/*">
       </div>
 
       <button type="submit">Submit Feedback</button>
