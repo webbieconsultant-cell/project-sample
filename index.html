@@ -3,314 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leave Us a Review | Footwear Feedback</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <title>Leave Us a Review</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
+      padding: 20px;
     }
-    
-    .star-btn {
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.15s ease;
+    .card {
+      background: #ffffff;
+      padding: 32px 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      max-width: 440px;
+      width: 100%;
     }
-    .star-btn:hover, .star-btn.active {
-      transform: scale(1.3) rotate(-3deg);
-      color: #f59e0b;
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
     }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    .header h2 {
+      color: #111827;
+      font-size: 22px;
+      margin-bottom: 6px;
     }
-
-    @keyframes subtlePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+    .header p {
+      color: #6b7280;
+      font-size: 14px;
     }
-    .btn-pulse:hover {
-      animation: subtlePulse 1.5s infinite ease-in-out;
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #374151;
+      font-size: 14px;
+    }
+    label span {
+      color: #ef4444;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #1f2937;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    button {
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #1d4ed8;
     }
   </style>
 </head>
+<body>
 
-<body class="flex items-center justify-center p-4 sm:p-6 md:p-8">
-
-  <div class="w-full max-w-md">
-    
-    <!-- Brand Identity Header -->
-    <div class="text-center mb-6">
-      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 shadow-xl mb-3 shadow-amber-500/20">
-        <i class="fa-solid fa-shoe-prints text-2xl font-bold"></i>
-      </div>
-      <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Your Feedback Matters!</h1>
-      <p class="text-slate-400 text-xs sm:text-sm mt-1">Tell us how your new kicks feel on your feet 👟</p>
+  <div class="card">
+    <div class="header">
+      <h2>We Value Your Feedback! 👟</h2>
+      <p>Please complete all required fields below to submit your review.</p>
     </div>
 
-    <!-- MAIN FORM CONTAINER -->
-    <div id="reviewCard" class="glass-card rounded-3xl p-6 sm:p-8 transition-all duration-300">
+    <!-- Connected Formspree Form -->
+    <form action="https://formspree.io/f/xqpaljkl" method="POST">
       
-      <!-- FORM START -->
-      <form id="reviewForm" action="https://formspree.io/f/xqpaljkl" method="POST" class="space-y-5">
-        
-        <!-- Star Rating Section -->
-        <div>
-          <label class="block text-center text-xs font-bold text-slate-800 uppercase tracking-widest mb-1">
-            Overall Rating <span class="text-red-500">*</span>
-          </label>
-          
-          <div class="flex justify-center items-center space-x-2 my-2" id="starContainer">
-            <button type="button" data-value="1" class="star-btn text-4xl text-slate-300 focus:outline-none">★</button>
-            <button type="button" data-value="2" class="star-btn text-4xl text-slate-300 focus:outline-none">★</button>
-            <button type="button" data-value="3" class="star-btn text-4xl text-slate-300 focus:outline-none">★</button>
-            <button type="button" data-value="4" class="star-btn text-4xl text-slate-300 focus:outline-none">★</button>
-            <button type="button" data-value="5" class="star-btn text-4xl text-slate-300 focus:outline-none">★</button>
-          </div>
-
-          <!-- Dynamic Rating Label -->
-          <div id="ratingLabel" class="text-center text-xs font-bold text-amber-600 h-5">
-            Tap a star to rate
-          </div>
-          
-          <!-- Hidden Input carrying values like "5 ⭐⭐⭐⭐⭐" to Formspree -->
-          <input type="hidden" name="rating" id="ratingInput" required value="">
-        </div>
-
-        <!-- Customer Name Field -->
-        <div>
-          <label for="name" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-            Your Name <span class="text-slate-400 font-normal lowercase">(optional)</span>
-          </label>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <i class="fa-regular fa-user text-sm"></i>
-            </div>
-            <input type="text" id="name" name="name" placeholder="e.g. Sarah K." 
-              class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm focus:bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all outline-none">
-          </div>
-        </div>
-
-        <!-- Shoe / Product Name Field -->
-        <div>
-          <label for="shoe_purchased" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-            Shoe / Product Name <span class="text-slate-400 font-normal lowercase">(optional)</span>
-          </label>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <i class="fa-solid fa-tag text-sm"></i>
-            </div>
-            <input type="text" id="shoe_purchased" name="shoe_purchased" placeholder="e.g. Air Force 1s, Leather Loafers..." 
-              class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm focus:bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all outline-none">
-          </div>
-        </div>
-
-        <!-- Review Message Field -->
-        <div>
-          <label for="feedback" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-            Your Review <span class="text-red-500">*</span>
-          </label>
-          <textarea id="feedback" name="feedback" rows="3" required
-            placeholder="How was the fit, comfort, quality, and delivery speed? Let us know!"
-            class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-sm focus:bg-white focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all outline-none resize-none"></textarea>
-        </div>
-
-        <!-- Optional Photo Upload Section -->
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-            Add Photo of Shoes <span class="text-slate-400 font-normal lowercase">(optional)</span>
-          </label>
-          
-          <div id="uploadBox" class="border-2 border-dashed border-slate-200 rounded-xl p-3 text-center cursor-pointer hover:border-amber-500 hover:bg-amber-50/30 transition-all">
-            <input type="file" id="photoInput" name="upload" accept="image/*" class="hidden">
-            <div id="uploadPlaceholder" class="space-y-1">
-              <i class="fa-solid fa-camera text-slate-400 text-xl"></i>
-              <p class="text-xs font-medium text-slate-600">Tap to upload or take a photo</p>
-            </div>
-            
-            <!-- Preview Box -->
-            <div id="imagePreviewContainer" class="hidden relative inline-block mt-1">
-              <img id="imagePreview" src="#" alt="Preview" class="h-20 w-20 object-cover rounded-lg border border-slate-200 shadow-sm">
-              <button type="button" id="removePhotoBtn" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs shadow-md hover:bg-red-600">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" id="submitBtn"
-          class="btn-pulse w-full bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-slate-900/20 transition-all text-sm flex items-center justify-center space-x-2">
-          <span>Submit My Review</span>
-          <i class="fa-solid fa-paper-plane text-xs"></i>
-        </button>
-        
-        <p class="text-center text-[10px] text-slate-400">
-          🔒 Your feedback helps us serve you better!
-        </p>
-
-      </form>
-      <!-- FORM END -->
-
-      <!-- SUCCESS / THANK YOU STATE -->
-      <div id="thankYouCard" class="hidden text-center py-6 space-y-3">
-        <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full mb-1">
-          <i class="fa-solid fa-check text-3xl"></i>
-        </div>
-        <h2 class="text-xl font-extrabold text-slate-800">Thank You So Much!</h2>
-        <p class="text-slate-600 text-xs leading-relaxed max-w-xs mx-auto">
-          Your review has been successfully submitted. We truly appreciate your support! 👟❤️
-        </p>
-        <div class="pt-2">
-          <button onclick="window.location.reload()" class="text-xs font-semibold text-amber-600 hover:underline">
-            ← Leave another review
-          </button>
-        </div>
+      <!-- Required Name -->
+      <div class="form-group">
+        <label for="name">Your Name <span>*</span></label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
       </div>
 
-    </div>
+      <!-- Required Phone Number -->
+      <div class="form-group">
+        <label for="phone">Phone Number <span>*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g. +234 801 234 5678" required>
+      </div>
 
-    <!-- Footer -->
-    <div class="text-center text-slate-500 text-[11px] mt-6">
-      &copy; Brand Customer Experience System
-    </div>
+      <!-- Required Email Address (Prevents Formspree validation error) -->
+      <div class="form-group">
+        <label for="email">Email Address <span>*</span></label>
+        <input type="email" id="email" name="email" placeholder="e.g. customer@example.com" required>
+      </div>
 
+      <!-- Required Shoe Details -->
+      <div class="form-group">
+        <label for="shoe_item">Which shoe pair did you purchase? <span>*</span></label>
+        <input type="text" id="shoe_item" name="shoe_item" placeholder="e.g. Black Leather Loafers" required>
+      </div>
+
+      <!-- Required Rating Dropdown -->
+      <div class="form-group">
+        <label for="rating">Rating <span>*</span></label>
+        <select id="rating" name="rating" required>
+          <option value="" disabled selected>Select a rating...</option>
+          <option value="5 ⭐⭐⭐⭐⭐">5 ⭐⭐⭐⭐⭐ - Excellent</option>
+          <option value="4 ⭐⭐⭐⭐">4 ⭐⭐⭐⭐ - Good</option>
+          <option value="3 ⭐⭐⭐">3 ⭐⭐⭐ - Average</option>
+          <option value="2 ⭐⭐">2 ⭐⭐ - Poor</option>
+          <option value="1 ⭐">1 ⭐ - Very Bad</option>
+        </select>
+      </div>
+
+      <!-- Required Feedback Text -->
+      <div class="form-group">
+        <label for="feedback">Your Review <span>*</span></label>
+        <textarea id="feedback" name="feedback" rows="4" placeholder="Tell us about your experience..." required></textarea>
+      </div>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      
-      const starButtons = document.querySelectorAll('.star-btn');
-      const ratingInput = document.getElementById('ratingInput');
-      const ratingLabel = document.getElementById('ratingLabel');
-      const photoInput = document.getElementById('photoInput');
-      const uploadBox = document.getElementById('uploadBox');
-      const uploadPlaceholder = document.getElementById('uploadPlaceholder');
-      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-      const imagePreview = document.getElementById('imagePreview');
-      const removePhotoBtn = document.getElementById('removePhotoBtn');
-      const form = document.getElementById('reviewForm');
-
-      // Formspree values matching "5 ⭐⭐⭐⭐⭐" format
-      const ratingValues = {
-        1: "1 ⭐",
-        2: "2 ⭐⭐",
-        3: "3 ⭐⭐⭐",
-        4: "4 ⭐⭐⭐⭐",
-        5: "5 ⭐⭐⭐⭐⭐"
-      };
-
-      const ratingDescriptions = {
-        1: "1 Star - Poor Fit/Quality 😞",
-        2: "2 Stars - Could Be Better 🤔",
-        3: "3 Stars - Average / Okay 👟",
-        4: "4 Stars - Great Shoes! 😊",
-        5: "5 Stars - Absolutely Loved Them! 🔥👟"
-      };
-
-      let selectedRating = 0;
-
-      // --- STAR RATING SELECTION LOGIC ---
-      starButtons.forEach((star, index) => {
-        const ratingVal = index + 1;
-
-        star.addEventListener('mouseenter', () => {
-          highlightStars(ratingVal);
-          ratingLabel.textContent = ratingDescriptions[ratingVal];
-        });
-
-        star.parentElement.addEventListener('mouseleave', () => {
-          highlightStars(selectedRating);
-          ratingLabel.textContent = selectedRating ? ratingDescriptions[selectedRating] : "Tap a star to rate";
-        });
-
-        star.addEventListener('click', () => {
-          selectedRating = ratingVal;
-          // Assigns "5 ⭐⭐⭐⭐⭐" format to hidden input
-          ratingInput.value = ratingValues[selectedRating];
-          highlightStars(selectedRating);
-          ratingLabel.textContent = ratingDescriptions[selectedRating];
-        });
-      });
-
-      function highlightStars(count) {
-        starButtons.forEach((star, idx) => {
-          if (idx < count) {
-            star.classList.add('text-amber-500', 'active');
-            star.classList.remove('text-slate-300');
-          } else {
-            star.classList.remove('text-amber-500', 'active');
-            star.classList.add('text-slate-300');
-          }
-        });
-      }
-
-      // --- PHOTO UPLOAD & PREVIEW ---
-      uploadBox.addEventListener('click', (e) => {
-        if (e.target !== removePhotoBtn && !removePhotoBtn.contains(e.target)) {
-          photoInput.click();
-        }
-      });
-
-      photoInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            imagePreview.src = event.target.result;
-            uploadPlaceholder.classList.add('hidden');
-            imagePreviewContainer.classList.remove('hidden');
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-      removePhotoBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        photoInput.value = '';
-        imagePreview.src = '#';
-        imagePreviewContainer.classList.add('hidden');
-        uploadPlaceholder.classList.remove('hidden');
-      });
-
-      // --- FORM SUBMISSION handling ---
-      form.addEventListener('submit', (e) => {
-        if (!selectedRating) {
-          e.preventDefault();
-          alert('Please tap a star to give a rating before submitting!');
-          return;
-        }
-
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `
-          <i class="fa-solid fa-circle-notch fa-spin text-sm"></i>
-          <span>Submitting...</span>
-        `;
-      });
-
-    });
-  </script>
 </body>
 </html>
